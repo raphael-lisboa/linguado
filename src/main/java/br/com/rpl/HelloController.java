@@ -1,11 +1,18 @@
-package br.com.caelum.vraptor.blank;
+package br.com.rpl;
 
-import br.com.caelum.vraptor.Controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HelloController {
 
-	public String hello(){
-		return "ola mundo";
+	@RequestMapping("/hello")
+	public String hello(
+			@RequestParam(value = "name", required = false, defaultValue = "World") String name,
+			Model model) {
+		model.addAttribute("name", name);
+		return "helloworld";
 	}
 }
